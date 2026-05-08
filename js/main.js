@@ -153,7 +153,7 @@ function displayContacts(contacts) {
   // no contacts, show empty state
   if (contacts.length === 0) {
     container.innerHTML = `
-  <div class="d-flex mt-5 justify-content-center min-vh-100">
+  <div class="d-flex mt-5 justify-content-center mb-5">
     <div class="text-center mt-3">
       <div class="empty-state-icon mx-auto mb-4">
         <i class="fa-solid fa-address-book"></i>
@@ -305,7 +305,7 @@ function displayFavorites() {
     var contact = favoritesList[i];
     favContacts += `
       <div class="col-md-6 col-xl-12" >
-         <a class="d-flex flex-grow-1  rounded-3 p-2 justify-content-between align-items-center" href="tel:${contact.phoneNumber}">
+        <a class="d-flex flex-grow-1  rounded-3 p-2 justify-content-between align-items-center" href="tel:${contact.phoneNumber}">
                   <div class="d-flex flex-wrap gap-2 align-items-center">
                     <div id="contact-profile-icon" class="contact-profile-icon ${contact.gradient} rounded-3 ${contact.avatar ? "d-none" : "d-flex"}  flex-wrap justify-content-center align-items-center">
                       <p class="text-white fs-xxs fw-semibold mb-0">${getFirstLetters(contact.fullName)}</p>
