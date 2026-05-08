@@ -1225,6 +1225,9 @@ section
   nav .nav-icon:hover{
   background-color: var(--bs-gray-200);
   }
+  nav .nav-icon:hover i{
+  color: var(--color-gray-700) !important;
+  }
 }
 
 @media screen and (min-width:1200px) {
