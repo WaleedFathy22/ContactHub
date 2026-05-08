@@ -1227,6 +1227,7 @@ section
   }
   nav .nav-icon:hover i{
   color: var(--color-gray-700) !important;
+  cursor: pointer;
   }
 }
 
