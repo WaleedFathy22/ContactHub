@@ -574,7 +574,7 @@ function updateContact() {
   }
 
   for (var i = 0; i < contactsList.length; i++) {
-    if (contactsList[i].phoneNumber === phoneNumberInput.value.trim()) {
+    if (contactsList[i].phoneNumber === phoneNumberInput.value.trim() && i !== updatedIndex) {
       Swal.fire({
         title: "Duplicate Phone Number",
         text: "A contact with this phone number already exists: " + contactsList[i].fullName,
