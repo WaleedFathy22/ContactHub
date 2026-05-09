@@ -476,7 +476,7 @@ function DeleteContacts(phoneNumber) {
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#d33",
-    cancelButtonColor: "#333333",
+    cancelButtonColor: "#6b7280",
     confirmButtonText: "Yes, delete it!",
   }).then((result) => {
     if (result.isConfirmed) {
@@ -511,17 +511,17 @@ function DeleteContacts(phoneNumber) {
       totalemergencyCount.innerHTML = emergencyList.length;
 
       document.getElementById("total").innerHTML = contactsList.length;
+      Swal.fire({
+        title: "Deleted!",
+        text: "Contact has been deleted.",
+        icon: "success",
+        buttonsStyling: false,
+        customClass: {
+          confirmButton: "d-none",
+        },
+        timer: 1500,
+      });
     }
-    Swal.fire({
-      title: "Deleted!",
-      text: "Contact has been deleted.",
-      icon: "success",
-      buttonsStyling: false,
-      customClass: {
-        confirmButton: "d-none",
-      },
-      timer: 1500,
-    });
   });
 
   
