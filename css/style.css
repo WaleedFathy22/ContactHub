@@ -393,6 +393,10 @@ nav button:hover {
 
 /* ------------ Modal Style ------------ */
 
+.modal{
+  backdrop-filter: blur(5px);
+}
+
 .modal .modal-content .modal-body::-webkit-scrollbar{
   display: none;
 }
