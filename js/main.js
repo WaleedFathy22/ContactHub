@@ -145,8 +145,17 @@ function getFirstLetters(name) {
   return (parts[0].charAt(0) + parts[1].charAt(0)).toUpperCase();
 }
 
+// ── Search Highlight ──
+function highlightText(text, searchTerm) {
+  if (!searchTerm.trim()) return text;
+  var regex = new RegExp("(" + searchTerm + ")", "gi");
+  return text.replace(regex, "<mark>$1</mark>");
+}
+
 // ── Render all contacts  ──
 function displayContacts(contacts) {
+  var searchTerm = searchInput.value;
+
   var container = document.getElementById("rowdata");
   var contactCards = "";
 
@@ -168,6 +177,10 @@ function displayContacts(contacts) {
   // loop through contacts and create cards
   for (var i = 0; i < contacts.length; i++) {
     var contact = contacts[i];
+    var hlName  = highlightText(contact.fullName, searchTerm);
+    var hlPhone = highlightText(contact.phoneNumber, searchTerm);
+    var hlEmail = highlightText(contact.email, searchTerm);
+
     var initials = getFirstLetters(contact.fullName);
     var hasAvatar = contact.avatar !== "";
     contactCards += `
@@ -198,12 +211,12 @@ function displayContacts(contacts) {
               </div>
 
               <div>
-                <h3 class="mb-1 fw-semibold fs-6">${contact.fullName}</h3>
+                <h3 class="mb-1 fw-semibold fs-6">${hlName}</h3>
                 <div class="d-flex flex-wrap gap-1 align-items-center">
                   <span class="bg-blue-100 icon rounded-2">
                     <i class="fas text-primary fa-phone"></i>
                   </span>
-                  <span class="fs-xs text-color">${contact.phoneNumber}</span>
+                  <span class="fs-xs text-color">${hlPhone}</span>
                 </div>
               </div>
             </div>
@@ -215,7 +228,7 @@ function displayContacts(contacts) {
               <span class="card-body-icon email-icon">
                 <i class="fas fs-xxs fa-envelope"></i>
               </span>
-              <p class="mb-0 text-color fs-xs">${contact.email}</p>
+              <p class="mb-0 text-color fs-xs">${hlEmail}</p>
             </div>
             <div class="d-flex mt-2 flex-wrap align-items-center gap-2">
               <span class="card-body-icon location-icon">
@@ -529,17 +542,17 @@ function DeleteContacts(phoneNumber) {
 
 // ── Search contacts ──
 function search() {
-  var searchTirm = searchInput.value;
+  var searchTerm = searchInput.value;
   var filteredList = [];
   for (var i = 0; i < contactsList.length; i++) {
     var contact = contactsList[i];
 
     if (
-      contact.fullName.toLowerCase().includes(searchTirm.toLowerCase()) ||
-      contact.email.toLowerCase().includes(searchTirm.toLowerCase()) ||
-      contact.phoneNumber.toLowerCase().includes(searchTirm.toLowerCase())
+      contact.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      contact.phoneNumber.toLowerCase().includes(searchTerm.toLowerCase())
     ) {
-      filteredList.push({ ...contact, oldIndex: i });
+      filteredList.push(contact);
     }
   }
   displayContacts(filteredList);
